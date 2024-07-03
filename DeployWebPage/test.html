@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat with AI</title>
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            console.log("User input:", userInput);  // 調試信息
+
+            const response = await fetch('http://127.0.0.1:5000/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input: userInput })
+            });
+            
+            console.log("Fetch response status:", response.status);  // 調試信息
+            const data = await response.json();
+            console.log("AI response:", data.response);  // 調試信息
+
+            document.getElementById('response').innerText = data.response;
+        }
+    </script>
+</head>
+<body>
+    <h1>Chat with AI</h1>
+    <input type="text" id="userInput" placeholder="Enter your message">
+    <button onclick="sendMessage()">Send</button>
+    <p id="response"></p>
+</body>
+</html>
