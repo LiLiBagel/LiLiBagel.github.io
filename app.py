@@ -17,7 +17,7 @@ def chat():
     # 使用 ChatGPT API 獲取回應
     response = client.completions.create(
         model="ft:davinci-002:personal::9foev6P4",#gpt-3.5-turbo-instruct
-        prompt = prompt,
+        prompt = user_input,
         max_tokens=200,
     )   
     return response.choices[0].text
