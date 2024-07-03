@@ -1,16 +1,28 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from ChatGPT_api1 import get_ai_response
+import openai
+import os
 
 app = Flask(__name__)
 CORS(app)  # 啟用CORS，允許來自任何來源的請求
+
+# 使用從環境變量中獲取的OpenAI API密鑰
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.json
     user_input = data['input'].encode("utf-8").decode("latin1")
-    response = get_ai_response(user_input)
-    return jsonify({'response': response})
+    
+    # 使用 ChatGPT API 獲取回應
+    response = client.completions.create(
+        model="ft:davinci-002:personal::9foev6P4",#gpt-3.5-turbo-instruct
+        prompt = prompt,
+        max_tokens=200,
+    )   
+    return response.choices[0].text
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
