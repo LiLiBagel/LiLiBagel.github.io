@@ -26,6 +26,8 @@ def chat():
         max_tokens=100,
     )   
     print(type(response.choices[0].text))
+    print(type(response.choices[0]))
+    print(type(response))
     return response.choices[0].text
 
 
