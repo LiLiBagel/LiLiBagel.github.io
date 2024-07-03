@@ -18,15 +18,19 @@ def serve_frontend():
 def chat():
     data = request.json
     user_input = data['input'].encode("utf-8").decode("latin1")
-    
+
+    try:
     # 使用 ChatGPT API 獲取回應
-    response = client.completions.create(
-        model="ft:davinci-002:personal::9foev6P4",#gpt-3.5-turbo-instruct
-        prompt = user_input,
-        max_tokens=100,
-    )   
-    
-    return response.choices[0].text
+        response = client.completions.create(
+            model="ft:davinci-002:personal::9foev6P4",#gpt-3.5-turbo-instruct
+            prompt = user_input,
+            max_tokens=100,
+        )   
+        
+        return jsonify({'response': response.choices[0].text.strip()})
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({'error': str(e)})
 
 
 if __name__ == '__main__':
