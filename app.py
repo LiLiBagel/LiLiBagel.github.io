@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from ChatGPT import get_ai_response
+from ChatGPT_api import get_ai_response
 
 app = Flask(__name__)
 CORS(app)  # 啟用CORS，允許來自任何來源的請求
