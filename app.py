@@ -9,8 +9,7 @@ app = Flask(__name__)
 CORS(app)  # 啟用CORS，允許來自任何來源的請求
 
 # 使用從環境變量中獲取的OpenAI API密鑰
-openai.api_key = os.getenv('OPENAI_API_KEY')
-
+openai.api_key = 'sk-proj-7Gnk6rkfcFu8hCOcbKDGT3BlbkFJex8YtEfJYWAqevBMAADq'
 @app.route('/')
 def serve_frontend():
     return send_from_directory('.', 'test.html')
