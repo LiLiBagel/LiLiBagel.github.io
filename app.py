@@ -25,7 +25,7 @@ def chat():
         prompt = user_input,
         max_tokens=100,
     )   
-    print(type(response.chices[0].text))
+    print(type(response.choices[0].text))
     return response.choices[0].text
 
 
