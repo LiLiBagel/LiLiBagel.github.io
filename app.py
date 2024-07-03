@@ -23,8 +23,9 @@ def chat():
     response = client.completions.create(
         model="ft:davinci-002:personal::9foev6P4",#gpt-3.5-turbo-instruct
         prompt = user_input,
-        max_tokens=200,
+        max_tokens=100,
     )   
+    print(type(response.chices[0].text))
     return response.choices[0].text
 
 
