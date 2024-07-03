@@ -28,7 +28,7 @@ def chat():
     print(type(response.choices[0].text))
     print(type(response.choices[0]))
     print(type(response))
-    return response.choices[0].text
+    return response
 
 
 if __name__ == '__main__':
