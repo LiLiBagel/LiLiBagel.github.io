@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import openai
 import os
@@ -10,8 +10,8 @@ CORS(app)  # 啟用CORS，允許來自任何來源的請求
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def serve_frontend():
+    return send_from_directory('.', 'test.html')
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
