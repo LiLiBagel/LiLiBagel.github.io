@@ -9,6 +9,10 @@ CORS(app)  # 啟用CORS，允許來自任何來源的請求
 # 使用從環境變量中獲取的OpenAI API密鑰
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
 @app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.json
