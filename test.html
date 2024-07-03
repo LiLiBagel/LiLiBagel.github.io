@@ -15,9 +15,17 @@
                     },
                     body: JSON.stringify({ input: userInput })
                 });
+
+                // 檢查回應的內容類型
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new Error("Received non-JSON response");
+                }
+
                 const data = await response.json();
                 document.getElementById("response").innerText = data.response;
             } catch (error) {
+                console.error("Error:", error);
                 document.getElementById("response").innerText = "Error: " + error.message;
             }
         }
