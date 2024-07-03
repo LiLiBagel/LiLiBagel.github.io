@@ -2,7 +2,9 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import openai
 import os
+from openai import OpenAI
 
+client = OpenAI()
 app = Flask(__name__)
 CORS(app)  # 啟用CORS，允許來自任何來源的請求
 
