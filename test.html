@@ -16,7 +16,7 @@
                     body: JSON.stringify({ input: userInput })
                 });
                 const data = await response.json();
-                document.getElementById("response").innerText = data.response;
+                document.getElementById("response").innerText = "Response: " +data.response;
             } catch (error) {
                 document.getElementById("response").innerText = "Error: " + error.message;
             }
